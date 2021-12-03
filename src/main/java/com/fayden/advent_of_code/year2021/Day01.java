@@ -14,12 +14,13 @@ public class Day01 {
 
     public static void main(String... args) throws IOException {
         new Part1().run();
+        log.info("--------------------------------------------------------------");
         new Part2().run();
     }
 
     public static class Part1 {
         void run() throws IOException {
-            var lines = Resources.readLines(ClassLoader.getSystemResource(INPUT_FILE_PART_1), StandardCharsets.UTF_8)
+            @SuppressWarnings("UnstableApiUsage") var lines = Resources.readLines(ClassLoader.getSystemResource(INPUT_FILE_PART_1), StandardCharsets.UTF_8)
                     .stream()
                     .map(Integer::valueOf)
                     .toList();
@@ -40,7 +41,7 @@ public class Day01 {
 
     public static class Part2 {
         void run() throws IOException {
-            var lines = Resources.readLines(ClassLoader.getSystemResource(INPUT_FILE_PART_1), StandardCharsets.UTF_8)
+            @SuppressWarnings("UnstableApiUsage")  var lines = Resources.readLines(ClassLoader.getSystemResource(INPUT_FILE_PART_1), StandardCharsets.UTF_8)
                     .stream()
                     .map(Integer::valueOf)
                     .toList();

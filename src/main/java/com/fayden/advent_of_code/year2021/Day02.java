@@ -14,13 +14,13 @@ public class Day02 {
 
     public static void main(String... args) throws IOException {
         new Part1().run();
-        log.info("\n--------------------------------------------------------------\n");
+        log.info("--------------------------------------------------------------");
         new Part2().run();
     }
 
     public static class Part1 {
         void run() throws IOException {
-            var lignes = Resources.readLines(ClassLoader.getSystemResource(INPUT_FILE_PART_1), StandardCharsets.UTF_8);
+            @SuppressWarnings("UnstableApiUsage") var lignes = Resources.readLines(ClassLoader.getSystemResource(INPUT_FILE_PART_1), StandardCharsets.UTF_8);
             final SousMarin sousMarin = new SousMarin();
             for (String commande : lignes) {
                 sousMarin.deplacer(commande);
@@ -49,7 +49,7 @@ public class Day02 {
 
     public static class Part2 {
         void run() throws IOException {
-            var lignes = Resources.readLines(ClassLoader.getSystemResource(INPUT_FILE_PART_1), StandardCharsets.UTF_8);
+            @SuppressWarnings("UnstableApiUsage") var lignes = Resources.readLines(ClassLoader.getSystemResource(INPUT_FILE_PART_1), StandardCharsets.UTF_8);
             final SousMarin sousMarin = new SousMarin();
             for (String commande : lignes) {
                 sousMarin.deplacer(commande);
