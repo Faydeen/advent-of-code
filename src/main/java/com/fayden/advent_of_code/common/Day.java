@@ -1,0 +1,43 @@
+package com.fayden.advent_of_code.common;
+
+import com.google.common.io.Resources;
+import lombok.extern.slf4j.Slf4j;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.stream.Stream;
+
+@Slf4j
+public abstract class Day {
+    private final int year;
+    private final String dayNumber;
+
+    protected Day(int year, String dayNumber) {
+        this.year = year;
+        this.dayNumber = dayNumber;
+    }
+
+    public String getResourceFilePath(int part) {
+        return this.year + "/day" + dayNumber + "_" + part + ".txt";
+    }
+
+    @SuppressWarnings("UnstableApiUsage")
+    public Stream<String> loadFile(int part) {
+        try {
+            return Resources.readLines(ClassLoader.getSystemResource(getResourceFilePath(part)), StandardCharsets.UTF_8)
+                    .stream();
+        } catch (IOException e) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public abstract Object part1();
+
+    public abstract Object part2();
+
+    public void printParts() {
+        log.info("Day {} - Part 1 : {}", dayNumber, part1());
+        log.info("--------------------------------------------------------------------------------");
+        log.info("Day {} - Part 2 : {}", dayNumber, part2());
+    }
+}

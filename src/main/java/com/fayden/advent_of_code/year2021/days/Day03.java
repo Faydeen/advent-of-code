@@ -1,25 +1,34 @@
-package com.fayden.advent_of_code.year2021;
+package com.fayden.advent_of_code.year2021.days;
 
-import com.google.common.io.Resources;
+import com.fayden.advent_of_code.year2021.Day2021;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
-public class Day03 {
+public class Day03 extends Day2021 {
 
-    static final String INPUT_FILE_PART_1 = "2021/day03_1.txt";
-
-    public static void main(String... args) throws IOException {
-        new Part1().run();
-        log.info("--------------------------------------------------------------");
-        new Part2().run();
+    public Day03() {
+        super("03");
     }
 
+    public static void main(String... args) {
+        new Day01().printParts();
+    }
+
+    public Object part1() {
+        final List<String> lines = loadFile(1).toList();
+        final Diagnostic diagnostic = new Diagnostic(lines);
+        return diagnostic.getPowerConsumption();
+    }
+
+    public Object part2() {
+        final List<String> lines = loadFile(1).toList();
+        final Diagnostic diagnostic = new Diagnostic(lines);
+        return diagnostic.getLifeSupportRating();
+    }
 
     @Data
     public static class Diagnostic {
@@ -104,23 +113,6 @@ public class Day03 {
 
         public int getLifeSupportRating() {
             return getOxygenGeneratorRating() * getCo2ScrubberRating();
-        }
-    }
-
-
-    public static class Part1 {
-        void run() throws IOException {
-            @SuppressWarnings("UnstableApiUsage") var lines = Resources.readLines(ClassLoader.getSystemResource(INPUT_FILE_PART_1), StandardCharsets.UTF_8);
-            final Diagnostic diagnostic = new Diagnostic(lines);
-            log.info("Power consumption of the submarin: {}", diagnostic.getPowerConsumption());
-        }
-    }
-
-    public static class Part2 {
-        void run() throws IOException {
-            @SuppressWarnings("UnstableApiUsage") var lines = Resources.readLines(ClassLoader.getSystemResource(INPUT_FILE_PART_1), StandardCharsets.UTF_8);
-            final Diagnostic diagnostic = new Diagnostic(lines);
-            log.info("Life support rating of the submarin: {}", diagnostic.getLifeSupportRating());
         }
     }
 }
