@@ -15,7 +15,7 @@ public class Day03 extends Day2021 {
     }
 
     public static void main(String... args) {
-        new Day01().printParts();
+        new Day03().printParts();
     }
 
     public Object part1() {
