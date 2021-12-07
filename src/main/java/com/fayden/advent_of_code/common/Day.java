@@ -31,6 +31,17 @@ public abstract class Day {
         }
     }
 
+    @SuppressWarnings("UnstableApiUsage")
+    public Stream<String> loadFileOnLine(int part, String separator) {
+        try {
+            return Stream.of(Resources.readLines(ClassLoader.getSystemResource(getResourceFilePath(part)), StandardCharsets.UTF_8)
+                    .get(0)
+                    .split(","));
+        } catch (IOException e) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     public abstract Object part1();
 
     public abstract Object part2();
