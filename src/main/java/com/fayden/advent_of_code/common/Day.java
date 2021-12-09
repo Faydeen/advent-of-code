@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.stream.Stream;
 
 @Slf4j
@@ -26,6 +27,16 @@ public abstract class Day {
         try {
             return Resources.readLines(ClassLoader.getSystemResource(getResourceFilePath(part)), StandardCharsets.UTF_8)
                     .stream();
+        } catch (IOException e) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    @SuppressWarnings("UnstableApiUsage")
+    public Grid<String> loadFileAsStringGrid(int part) {
+        try {
+            List<String> strings = Resources.readLines(ClassLoader.getSystemResource(getResourceFilePath(part)), StandardCharsets.UTF_8);
+            return new Grid<>(strings.toArray(new String[0]), "");
         } catch (IOException e) {
             throw new IllegalArgumentException();
         }
