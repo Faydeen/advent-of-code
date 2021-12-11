@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Stream;
 
 import static java.util.Collections.reverseOrder;
 
@@ -68,7 +67,7 @@ public class Day09 extends Day2021 {
                 .convert(Integer::parseInt);
         List<PointValue> localLowPoint = findMinimumLocalInGrid(grid);
         return localLowPoint.stream()
-                .map(pointValue -> computeBasinSizeRecursive(grid, pointValue.position(), new HashSet<Point>()))
+                .map(pointValue -> computeBasinSizeRecursive(grid, pointValue.position(), new HashSet<>()))
                 .sorted(reverseOrder())
                 .limit(3)
                 .reduce((a, b) -> a * b)
@@ -83,7 +82,7 @@ public class Day09 extends Day2021 {
                         basinAlreadyEvaluated.contains(p))
             return 0;
         basinAlreadyEvaluated.add(p);
-        return 1 + Stream.of(Direction.values()).mapToInt(direction -> computeBasinSizeRecursive(grid, direction.move(p), basinAlreadyEvaluated)).sum();
+        return 1 + Direction.cardinalPoint().stream().mapToInt(direction -> computeBasinSizeRecursive(grid, direction.move(p), basinAlreadyEvaluated)).sum();
     }
 
     record PointValue(Point position, Integer value) {

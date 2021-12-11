@@ -5,7 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.awt.*;
 import java.util.Arrays;
+import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Data
@@ -37,7 +39,7 @@ public class Grid<T> {
     }
 
     public <R> Grid<R> convert(Function<T, R> convertTo) {
-        Grid<R> rGrid = new Grid<R>(this.sizeX, this.sizeY, null);
+        Grid<R> rGrid = new Grid<>(this.sizeX, this.sizeY, null);
         for (int x = 0; x < sizeX; x++) {
             for (int y = 0; y < sizeY; y++) {
                 try {
@@ -58,6 +60,7 @@ public class Grid<T> {
     }
 
     public T get(Point p) {
+        isPointInGrid(p);
         return get(p.x, p.y);
     }
 
@@ -66,14 +69,38 @@ public class Grid<T> {
         gridInstance[y][x] = value;
     }
 
+    public void set(Point p, T value) {
+        isPointInGrid(p);
+        gridInstance[p.y][p.x] = value;
+    }
+
     private void areXAndYInGrid(int x, int y) {
         if (x >= sizeX || x < 0 || y >= sizeY || y < 0) {
             throw new IllegalArgumentException("x, y not inside grid");
         }
     }
 
+    private void isPointInGrid(Point p) {
+        areXAndYInGrid(p.x, p.y);
+    }
 
     public boolean pointIsIn(Point p) {
         return p.x < sizeX && p.x >= 0 && p.y < sizeY && p.y >= 0;
+    }
+
+    public void print() {
+        log.info("Printing grid:");
+        for (int y = 0; y < sizeY; y++) {
+            log.info(Arrays.stream(this.gridInstance[y]).map(v -> String.format("%3s", v.toString())).collect(Collectors.joining(" , ")));
+        }
+        log.info("-----------------------------------------------------");
+    }
+
+    public void foreach(Consumer<Point> consumer) {
+        for (int x = 0; x < sizeX; x++) {
+            for (int y = 0; y < sizeY; y++) {
+                consumer.accept(new Point(x, y));
+            }
+        }
     }
 }
