@@ -23,7 +23,7 @@ public class Day06 extends Day2021 {
     }
 
     public Object part1() {
-        List<LanternFish> lanternfishList = Arrays.asList(loadFile(1).toList().get(0).split(","))
+        List<LanternFish> lanternfishList = Arrays.asList(getInputLines(1).toList().get(0).split(","))
                 .stream()
                 .map(Integer::parseInt)
                 .map(LanternFish::new)
@@ -59,7 +59,7 @@ public class Day06 extends Day2021 {
     }
 
     public Object part2() {
-        return Arrays.asList(loadFile(1).toList().get(0).split(","))
+        return Arrays.asList(getInputLines(1).toList().get(0).split(","))
                 .stream()
                 .map(Integer::parseInt)
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))

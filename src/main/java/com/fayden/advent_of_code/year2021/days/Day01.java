@@ -16,14 +16,14 @@ public class Day01 extends Day2021 {
     }
 
     public Object part1() {
-        final List<Integer> lines = loadFile(1)
+        final List<Integer> lines = getInputLines(1)
                 .map(Integer::valueOf)
                 .toList();
         return nombreDeFoisQueLaProfondeurAugmente(lines);
     }
 
     public Object part2() {
-        final List<Integer> lines = loadFile(1)
+        final List<Integer> lines = getInputLines(1)
                 .map(Integer::valueOf)
                 .toList();
         int window = 3;

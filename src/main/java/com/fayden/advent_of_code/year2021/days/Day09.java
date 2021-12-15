@@ -25,7 +25,7 @@ public class Day09 extends Day2021 {
 
     @Override
     public Object part1() {
-        Grid<Integer> grid = loadFileAsStringGrid(1)
+        Grid<Integer> grid = getInputAsGrid(1)
                 .convert(Integer::parseInt);
 
         List<PointValue> localLowPoint = findMinimumLocalInGrid(grid);
@@ -63,7 +63,7 @@ public class Day09 extends Day2021 {
 
     @Override
     public Object part2() {
-        Grid<Integer> grid = loadFileAsStringGrid(1)
+        Grid<Integer> grid = getInputAsGrid(1)
                 .convert(Integer::parseInt);
         List<PointValue> localLowPoint = findMinimumLocalInGrid(grid);
         return localLowPoint.stream()

@@ -23,7 +23,16 @@ public abstract class Day {
     }
 
     @SuppressWarnings("UnstableApiUsage")
-    public Stream<String> loadFile(int part) {
+    public String getInput(int part) {
+        try {
+            return Resources.toString(ClassLoader.getSystemResource(getResourceFilePath(part)), StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    @SuppressWarnings("UnstableApiUsage")
+    public Stream<String> getInputLines(int part) {
         try {
             return Resources.readLines(ClassLoader.getSystemResource(getResourceFilePath(part)), StandardCharsets.UTF_8)
                     .stream();
@@ -33,7 +42,7 @@ public abstract class Day {
     }
 
     @SuppressWarnings("UnstableApiUsage")
-    public Grid<String> loadFileAsStringGrid(int part) {
+    public Grid<String> getInputAsGrid(int part) {
         try {
             List<String> strings = Resources.readLines(ClassLoader.getSystemResource(getResourceFilePath(part)), StandardCharsets.UTF_8);
             return new Grid<>(strings.toArray(new String[0]), "");
@@ -43,7 +52,7 @@ public abstract class Day {
     }
 
     @SuppressWarnings("UnstableApiUsage")
-    public Stream<String> loadFileOnLine(int part, String separator) {
+    public Stream<String> getInputOneLineSplit(int part, String separator) {
         try {
             return Stream.of(Resources.readLines(ClassLoader.getSystemResource(getResourceFilePath(part)), StandardCharsets.UTF_8)
                     .get(0)

@@ -20,14 +20,14 @@ public class Day04 extends Day2021 {
     }
 
     public Object part1() {
-        final List<String> lines = loadFile(1).toList();
+        final List<String> lines = getInputLines(1).toList();
         final List<Integer> tirage = Arrays.stream(lines.get(0).split(",")).map(Integer::parseInt).toList();
         final ArrayList<BingoGrid> bingoGrids = generateBingoGrids(lines);
         return winningBingoBoardScore(tirage, bingoGrids);
     }
 
     public Object part2() {
-        final List<String> lines = loadFile(1).toList();
+        final List<String> lines = getInputLines(1).toList();
         final List<Integer> tirage = Arrays.stream(lines.get(0).split(",")).map(Integer::parseInt).toList();
         final ArrayList<BingoGrid> bingoGrids = generateBingoGrids(lines);
         return loosingBingoBoardScore(0, tirage, bingoGrids);

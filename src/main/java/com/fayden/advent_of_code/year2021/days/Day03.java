@@ -19,13 +19,13 @@ public class Day03 extends Day2021 {
     }
 
     public Object part1() {
-        final List<String> lines = loadFile(1).toList();
+        final List<String> lines = getInputLines(1).toList();
         final Diagnostic diagnostic = new Diagnostic(lines);
         return diagnostic.getPowerConsumption();
     }
 
     public Object part2() {
-        final List<String> lines = loadFile(1).toList();
+        final List<String> lines = getInputLines(1).toList();
         final Diagnostic diagnostic = new Diagnostic(lines);
         return diagnostic.getLifeSupportRating();
     }

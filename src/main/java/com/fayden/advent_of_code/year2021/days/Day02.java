@@ -18,7 +18,7 @@ public class Day02 extends Day2021 {
     }
 
     public Object part1() {
-        final List<String> lines = loadFile(1)
+        final List<String> lines = getInputLines(1)
                 .toList();
         final SousMarinPart1 sousMarinPart1 = new SousMarinPart1();
         for (String commande : lines) {
@@ -29,7 +29,7 @@ public class Day02 extends Day2021 {
     }
 
     public Object part2() {
-        final List<String> lines = loadFile(1)
+        final List<String> lines = getInputLines(1)
                 .toList();
         final SousMarinPart2 sousMarinPart2 = new SousMarinPart2();
         for (String commande : lines) {

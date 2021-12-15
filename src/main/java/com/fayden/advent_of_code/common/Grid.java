@@ -88,10 +88,10 @@ public class Grid<T> {
         return p.x < sizeX && p.x >= 0 && p.y < sizeY && p.y >= 0;
     }
 
-    public void print() {
+    public void print(String delimiter) {
         log.info("Printing grid:");
         for (int y = 0; y < sizeY; y++) {
-            log.info(Arrays.stream(this.gridInstance[y]).map(v -> String.format("%3s", v.toString())).collect(Collectors.joining(" , ")));
+            log.info(Arrays.stream(this.gridInstance[y]).map(v -> String.format("%3s", v.toString())).collect(Collectors.joining(delimiter)));
         }
         log.info("-----------------------------------------------------");
     }

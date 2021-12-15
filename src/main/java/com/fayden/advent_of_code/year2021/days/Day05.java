@@ -21,7 +21,7 @@ public class Day05 extends Day2021 {
 
     public Object part1() {
         Predicate<Line> filterLineByHorizontalOrVerticale = line -> line.isHorizontal() || line.isVertical();
-        return loadFile(1).map(Line::new)
+        return getInputLines(1).map(Line::new)
                 .filter(filterLineByHorizontalOrVerticale)
                 .flatMap(Line::getSegment)
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
@@ -33,7 +33,7 @@ public class Day05 extends Day2021 {
 
     public Object part2() {
         Predicate<Line> filterLineByHorizontalOrVerticalOrDiagonale = line -> line.isHorizontal() || line.isVertical() || line.isDiagonal();
-        return loadFile(1).map(Line::new)
+        return getInputLines(1).map(Line::new)
                 .filter(filterLineByHorizontalOrVerticalOrDiagonale)
                 .flatMap(Line::getSegment)
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))

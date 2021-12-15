@@ -19,14 +19,14 @@ public class Day07 extends Day2021 {
     }
 
     public Object part1() {
-        final long[] horizontalPosition = loadFileOnLine(1, ",").mapToLong(Long::parseLong).toArray();
+        final long[] horizontalPosition = getInputOneLineSplit(1, ",").mapToLong(Long::parseLong).toArray();
         long median = Math.round(Quantiles.median().compute(horizontalPosition));
         return Arrays.stream(horizontalPosition).map(operand -> Math.abs(median - operand)).sum();
     }
 
 
     public Object part2() {
-        final long[] horizontalPosition = loadFileOnLine(1, ",").mapToLong(Long::parseLong).toArray();
+        final long[] horizontalPosition = getInputOneLineSplit(1, ",").mapToLong(Long::parseLong).toArray();
         final long average = (long) Math.floor(Arrays.stream(horizontalPosition).summaryStatistics().getAverage());
         return Arrays.stream(horizontalPosition)
                 .map(operand -> Math.abs(average - operand))

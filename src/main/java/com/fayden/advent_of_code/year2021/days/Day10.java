@@ -20,7 +20,7 @@ public class Day10 extends Day2021 {
 
     @Override
     public Object part1() {
-        return loadFile(1)
+        return getInputLines(1)
                 .map(s -> {
                     try {
                         whatIsMissing(s.toCharArray());
@@ -37,7 +37,7 @@ public class Day10 extends Day2021 {
 
     @Override
     public Object part2() {
-        final long[] longs = loadFile(1)
+        final long[] longs = getInputLines(1)
                 .map(s -> {
                     try {
                         return whatIsMissing(s.toCharArray());

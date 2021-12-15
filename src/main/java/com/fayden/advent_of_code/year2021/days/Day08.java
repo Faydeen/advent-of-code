@@ -21,14 +21,14 @@ public class Day08 extends Day2021 {
     @Override
     public Object part1() {
         List<Integer> uniqueDigitSize = Arrays.asList(2, 3, 4, 7);
-        return loadFile(1).map(s -> s.split(" \\| ")[1]).flatMap(s -> Arrays.stream(s.split(" ")))
+        return getInputLines(1).map(s -> s.split(" \\| ")[1]).flatMap(s -> Arrays.stream(s.split(" ")))
                 .filter(s -> uniqueDigitSize.contains(s.length()))
                 .count();
     }
 
     @Override
     public Object part2() {
-        return loadFile(1).map(LineInput::new).mapToInt(LineInput::getOutput).sum();
+        return getInputLines(1).map(LineInput::new).mapToInt(LineInput::getOutput).sum();
     }
 
     @Data

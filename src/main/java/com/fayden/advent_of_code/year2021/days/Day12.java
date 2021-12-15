@@ -23,7 +23,7 @@ public class Day12 extends Day2021 {
     }
 
     private ImmutableListMultimap<String, String> getInput() {
-        return loadFile(1).map(e -> e.split("-")).flatMap(e -> Stream.of(new String[]{e[0], e[1]}, new String[]{e[1], e[0]})).collect(toImmutableListMultimap(e -> e[0], e -> e[1]));
+        return getInputLines(1).map(e -> e.split("-")).flatMap(e -> Stream.of(new String[]{e[0], e[1]}, new String[]{e[1], e[0]})).collect(toImmutableListMultimap(e -> e[0], e -> e[1]));
     }
 
     @Override

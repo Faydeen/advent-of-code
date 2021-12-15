@@ -23,7 +23,7 @@ public class Day11 extends Day2021 {
     @Override
     public Object part1() {
         var numberOfStepToSimulate = 100;
-        final Grid<Integer> grid = loadFileAsStringGrid(1)
+        final Grid<Integer> grid = getInputAsGrid(1)
                 .convert(Integer::parseInt);
 
         int result = 0;
@@ -62,7 +62,7 @@ public class Day11 extends Day2021 {
 
     @Override
     public Object part2() {
-        final Grid<Integer> grid = loadFileAsStringGrid(1)
+        final Grid<Integer> grid = getInputAsGrid(1)
                 .convert(Integer::parseInt);
 
         int result = 0;
