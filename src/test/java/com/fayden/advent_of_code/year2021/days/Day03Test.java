@@ -1,4 +1,4 @@
-package com.fayden.advent_of_code.year2021;
+package com.fayden.advent_of_code.year2021.days;
 
 import com.fayden.advent_of_code.year2021.days.Day03;
 import org.junit.jupiter.api.Nested;

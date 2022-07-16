@@ -1,10 +1,7 @@
 package com.fayden.advent_of_code.common;
 
-import com.google.common.io.Resources;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -13,53 +10,38 @@ public abstract class Day {
     private final int year;
     private final String dayNumber;
 
+    private final PuzzleInput puzzleInput;
+
     protected Day(int year, String dayNumber) {
         this.year = year;
         this.dayNumber = dayNumber;
+        this.puzzleInput = new PuzzleInputImp();
     }
 
-    public String getResourceFilePath(int part) {
-        return this.year + "/day" + dayNumber + "_" + part + ".txt";
-    }
 
     @SuppressWarnings("UnstableApiUsage")
     public String getInput(int part) {
-        try {
-            return Resources.toString(ClassLoader.getSystemResource(getResourceFilePath(part)), StandardCharsets.UTF_8);
-        } catch (IOException e) {
-            throw new IllegalArgumentException();
-        }
+        return puzzleInput.getContentAsString(year, dayNumber, part);
+
     }
 
     @SuppressWarnings("UnstableApiUsage")
     public Stream<String> getInputLines(int part) {
-        try {
-            return Resources.readLines(ClassLoader.getSystemResource(getResourceFilePath(part)), StandardCharsets.UTF_8)
-                    .stream();
-        } catch (IOException e) {
-            throw new IllegalArgumentException();
-        }
+        return puzzleInput.getContentAsLines(this.year, this.dayNumber, part).stream();
     }
 
     @SuppressWarnings("UnstableApiUsage")
     public Grid<String> getInputAsGrid(int part) {
-        try {
-            List<String> strings = Resources.readLines(ClassLoader.getSystemResource(getResourceFilePath(part)), StandardCharsets.UTF_8);
-            return new Grid<>(strings.toArray(new String[0]), "");
-        } catch (IOException e) {
-            throw new IllegalArgumentException();
-        }
+        List<String> strings = puzzleInput.getContentAsLines(this.year, this.dayNumber, part);
+        return new Grid<>(strings.toArray(new String[0]), "");
+
     }
 
     @SuppressWarnings("UnstableApiUsage")
     public Stream<String> getInputOneLineSplit(int part, String separator) {
-        try {
-            return Stream.of(Resources.readLines(ClassLoader.getSystemResource(getResourceFilePath(part)), StandardCharsets.UTF_8)
-                    .get(0)
-                    .split(","));
-        } catch (IOException e) {
-            throw new IllegalArgumentException();
-        }
+        return Stream.of(puzzleInput.getContentAsLines(this.year, this.dayNumber, part)
+                .get(0)
+                .split(","));
     }
 
     public abstract Object part1();
